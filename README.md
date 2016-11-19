@@ -31,6 +31,8 @@ var zoomer = d3.zoomer();
 
 ## Usage
 - You can call *zoomer* with *svg* or *g* which is child of *svg*. Zoomer will add class name to target *g* elements, and those target elements will be zoomed and panned.
+- When you call *zoomer* with *svg*, only *g* elements with [targetClass](#targetClass) will be targeted.
+- When you call *zoomer* with *g*, [targetClass](#targetClass) will be added to the *g* elements and they will be targeted.
 
 ```js
 // Usage 1
