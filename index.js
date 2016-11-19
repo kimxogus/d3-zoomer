@@ -78,7 +78,7 @@
       target.call(zoom
         .on('zoom', function () {
           target.select('g').attr('transform', d3Selection.event.transform);
-          dispatch.call('zoom', target);
+          dispatch.call('zoom', target.node());
         }));
     }
 
