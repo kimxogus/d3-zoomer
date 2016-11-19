@@ -24,6 +24,7 @@
 </head>
 <body>
 <div id="header">
+    zoom enabled: <span id="zoom-enabled"></span><br>
     scale: <span id="scale"></span><br>
     x: <span id="transform-x"></span><br>
     y: <span id="transform-y"></span><br>
@@ -51,6 +52,7 @@
     update();
 
     function update() {
+      updateValue("zoom-enabled", svgZoomer.enabled());
       updateValue("scale", svgZoomer.scale());
       updateValue("transform-x", svgZoomer.transform().x);
       updateValue("transform-y", svgZoomer.transform().y);
@@ -79,9 +81,11 @@
       })
       .on("mouseover", function() {
         svgZoomer.enabled(false);
+        update();
       })
       .on("mouseout", function() {
         svgZoomer.enabled(true);
+        update();
       });
 </script>
 </body>
