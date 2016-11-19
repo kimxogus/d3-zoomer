@@ -2,9 +2,12 @@
   "name": "d3-zoomer",
   "version": "0.0.1",
   "description": "d3-zoom wrapper",
+  "private": false,
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run lint && node node_modules/uglify-js/bin/uglifyjs index.js -c -m -o build/d3-zoomer.min.js",
+    "lint": "node node_modules/eslint/bin/eslint index.js"
   },
   "keywords": [
     "d3",
@@ -25,7 +28,8 @@
   },
   "devDependencies": {
     "eslint": "^3.10.2",
-    "eslint-config-airbnb": "^13.0.0",
-    "eslint-plugin-import": "^2.2.0"
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "uglify-js": "^2.7.4"
   }
 }

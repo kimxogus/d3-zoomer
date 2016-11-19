@@ -1,5 +1,8 @@
 /**
  * d3-zoomer
+ *
+ * @author Taehyun Kim
+ * @licence MIT
  */
 /* eslint-disable global-require */
 /* eslint-disable no-param-reassign */
@@ -120,11 +123,11 @@
     }
   };
 
-  zoomer.enabled = function (enabled) {
+  zoomer.enabled = function (_zoomEnabled) {
     if (arguments.length === 0) {
       return zoomEnabled;
     } else {
-      zoomEnabled = !!enabled;
+      zoomEnabled = _zoomEnabled;
       return zoomer;
     }
   };
