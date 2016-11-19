@@ -1,12 +1,12 @@
 {
-  "name": "d3-svg-zoomer",
+  "name": "d3-zoomer",
   "version": "0.0.1",
-  "description": "d3-zoom wrapper for svg",
+  "description": "d3-zoom wrapper library.",
   "private": false,
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run lint && node node_modules/uglify-js/bin/uglifyjs index.js -c -m -o build/d3-svg-zoomer.min.js",
+    "build": "npm run lint && node node_modules/uglify-js/bin/uglifyjs index.js -c -m -o build/d3-zoomer.min.js",
     "lint": "node node_modules/eslint/bin/eslint index.js"
   },
   "keywords": [

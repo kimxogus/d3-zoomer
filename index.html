@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>d3-zoomer</title>
     <script src="http://d3js.org/d3.v4.min.js"></script>
-    <script src="build/d3-svg-zoomer.min.js"></script>
+    <script src="build/d3-zoomer.min.js"></script>
     <style>
         html, body {
             width: 100%;
@@ -36,7 +36,7 @@
 
     var width = 1200, height = 200;
 
-    var svgZoomer = d3.svgZoomer()
+    var zoomer = d3.zoomer()
       .scaleRange([0.01, 2])
       .scaleDomain([1, 200])
       .targetClass("container")
@@ -48,18 +48,18 @@
       .attr("width", width)
       .attr("height", height)
       .append("g")
-      .call(svgZoomer);
+      .call(zoomer);
 
-    var container = svgZoomer.target();
+    var container = zoomer.target();
 
     update();
 
     function update() {
-      updateValue("zoom-enabled", svgZoomer.enabled());
-      updateValue("scale", svgZoomer.scale());
-      updateValue("transform-x", svgZoomer.transform().x);
-      updateValue("transform-y", svgZoomer.transform().y);
-      updateValue("transform-k", svgZoomer.transform().k);
+      updateValue("zoom-enabled", zoomer.enabled());
+      updateValue("scale", zoomer.scale());
+      updateValue("transform-x", zoomer.transform().x);
+      updateValue("transform-y", zoomer.transform().y);
+      updateValue("transform-k", zoomer.transform().k);
 
       function updateValue(id, value) {
         d3.select("#"+id)
@@ -83,11 +83,11 @@
         return color(d);
       })
       .on("mouseover", function() {
-        svgZoomer.enabled(false);
+        zoomer.enabled(false);
         update();
       })
       .on("mouseout", function() {
-        svgZoomer.enabled(true);
+        zoomer.enabled(true);
         update();
       });
 </script>
