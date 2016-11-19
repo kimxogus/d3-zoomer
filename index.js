@@ -67,7 +67,7 @@
           return zoomEnabled;
         }),
       dispatch = d3Dispatch
-        .dispatch('zoom');
+        .dispatch('start', 'zoom', 'end');
 
     function selectOrCreateTarget() {
       if (svg.selectAll('g.' + targetClass).empty()) {
@@ -92,10 +92,16 @@
       selectOrCreateTarget();
 
       svg.call(zoom
+        .on('start', function () {
+          dispatch.call('start', svg.node());
+        })
         .on('zoom', function () {
           selectOrCreateTarget().attr('transform', d3Selection.event.transform);
           dispatch.call('zoom', svg.node());
-        }));
+        }))
+        .on('end', function () {
+          dispatch.call('end', svg.node());
+        });
     }
 
     zoomer.targetClass = function (_className) {
@@ -140,9 +146,13 @@
       }
     };
 
-    zoomer.on = function (event, callback) {
-      dispatch.on(event, callback);
-      return zoomer;
+    zoomer.on = function (typename, callback) {
+      if (arguments.length === 1) {
+        return dispatch.on(typename);
+      } else {
+        dispatch.on(typename, callback);
+        return zoomer;
+      }
     };
 
     zoomer.transform = function (_transform) {
