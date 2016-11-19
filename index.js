@@ -123,9 +123,9 @@
       } else {
         var zoomTransform = d3Zoom.zoomTransform(target.node());
 
-        var x = _transform.x && _transform.x !== 0 ? _transform.x : zoomTransform.x,
-          y = _transform.y && _transform.y !== 0 ? _transform.y : zoomTransform.y,
-          scale = _transform.k && _transform.k !== 0 ? _transform.k : zoomTransform.k;
+        var x = _transform.x || _transform.x === 0 ? _transform.x : zoomTransform.x,
+          y = _transform.y || _transform.y === 0 ? _transform.y : zoomTransform.y,
+          scale = _transform.k || _transform.k === 0 ? _transform.k : zoomTransform.k;
 
         var zoomIdentity = d3Zoom.zoomIdentity.translate(x, y).scale(scale);
 
