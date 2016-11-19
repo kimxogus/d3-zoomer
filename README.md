@@ -85,7 +85,7 @@ Available *typenames* are as follows.
 
 See [d3-zoom.on](https://github.com/d3/d3-zoom#zoom_on) for details.
 
-<a name="transform" href="#transform">#</a> *zoomer*.<b>on</b>([<i>transform</i>]) [<>](https://github.com/kimxogus/d3-zoomer/blob/master/index.js#L148 "Source")
+<a name="transform" href="#transform">#</a> *zoomer*.<b>transform</b>([<i>transform</i>]) [<>](https://github.com/kimxogus/d3-zoomer/blob/master/index.js#L148 "Source")
 
 If *transform* is specified, apply the transform to [target](#target). To apply transform, *transform* should be an object with properties of *x*, *y* and *k*. You can specify only one or two of those properties like
 ```js
