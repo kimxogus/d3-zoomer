@@ -1,0 +1,21 @@
+{
+  "extends": "airbnb/legacy",
+  "env": {
+    "amd": true,
+    "browser": true,
+    "node": true
+  },
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    "vars-on-top": 0,
+    "func-names": 0,
+    "linebreak-style": 0,
+    "wrap-iife": ["error", "any"],
+    "no-underscore-dangle": 0,
+    "no-else-return": 0,
+    "one-var": 0,
+    "no-trailing-spaces": 0
+  }
+}
