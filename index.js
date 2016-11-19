@@ -78,9 +78,11 @@
     }
 
     function zoomer(_target) {
-      svg = _target;
-
-      svg = svg.node().tagName === 'svg' ? svg : d3Selection.select(svg.node().ownerSVGElement);
+      svg = _target.select(function () {
+        return this.tagName.toLowerCase() === 'svg'
+          ? this
+          : this.ownerSVGElement;
+      });
 
       selectOrCreateTarget();
 
