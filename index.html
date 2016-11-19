@@ -47,17 +47,18 @@
     var zoomer = d3.zoomer()
       .scaleRange([0.1, 2])
       .scaleDomain([10, 200])
-      .targetClass("container")
       .on('zoom', function() {
         update();
       });
 
     var svg = d3.select("#container").append("svg")
       .attr("width", width)
-      .attr("height", height)
-      .call(zoomer);
+      .attr("height", height);
+      // .call(zoomer); or call zoomer here! (only g.pan-zoom will be pan-zoomed)
 
-    var container = zoomer.target();
+    var circles = svg.append('g')
+      .attr('class', 'circles')
+      .call(zoomer); // call zoomer here!
 
     update();
 
@@ -81,8 +82,7 @@
 
     var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-    var circle = container.append("g").attr("class", "circles")
-      .selectAll("circle")
+    var circle = circles.selectAll("circle")
       .data(data).enter();
 
     circle.append("circle")

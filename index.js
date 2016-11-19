@@ -84,6 +84,11 @@
           : this.ownerSVGElement;
       });
 
+      _target.filter(function () {
+        return this.parentNode.tagName.toLowerCase() === 'svg' && this.tagName.toLowerCase() === 'g';
+      })
+        .classed(targetClass, true);
+
       selectOrCreateTarget();
 
       svg.call(zoom
