@@ -31,8 +31,8 @@
     var zoomer = d3.svgZoomer()
       .scaleRange([0.01, 1])
       .scaleDomain([1, 100])
-      .onZoom(function(newScale) {
-        console.log(newScale);
+      .on('zoom', function(newScale, newTransform) {
+        console.log(newScale, newTransform);
       });
 
     svg.call(zoomer);

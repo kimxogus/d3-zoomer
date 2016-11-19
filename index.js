@@ -10,6 +10,7 @@
   var d3Zoom;
   var d3Selection;
   var d3Scale;
+  var d3Dispatch;
   if (typeof define === 'function' && define.amd) {
     try {
       d3Zoom = require('d3-zoom');
@@ -26,23 +27,29 @@
     } catch (e) {
       d3Scale = require('d3');
     }
+    try {
+      d3Dispatch = require('d3-dispatch');
+    } catch (e) {
+      d3Dispatch = require('d3');
+    }
     define([], function () {
-      return factory(d3Zoom, d3Selection, d3Scale);
+      return factory(d3Zoom, d3Selection, d3Scale, d3Dispatch);
     });
   } else if (typeof module === 'object' && module.exports) {
     d3Zoom = require('d3-zoom');
     d3Selection = require('d3-selection');
     d3Scale = require('d3-scale');
-    module.exports = factory(d3Zoom, d3Selection, d3Scale);
+    d3Dispatch = require('d3-dispatch');
+    module.exports = factory(d3Zoom, d3Selection, d3Scale, d3Dispatch);
   }
 
   var d3 = root.d3;
   if (d3) {
-    root.d3.svgZoomer = factory(d3, d3, d3);
+    root.d3.svgZoomer = factory(d3, d3, d3, d3);
   }
 /* eslint-enable no-param-reassign */
 /* eslint-enable global-require no-param-reassign */
-})(this, function (d3Zoom, d3Selection, d3Scale) {
+})(this, function (d3Zoom, d3Selection, d3Scale, d3Dispatch) {
   return function () {
     var target = null,
       zoomEnabled = true,
@@ -51,12 +58,13 @@
       zoomScale = d3Scale.scaleLinear()
         .domain(zoomScaleDomain)
         .range(zoomScaleRange),
-      onZoom = function () {},
       zoom = d3Zoom.zoom()
         .scaleExtent(zoomScaleRange)
         .filter(function () {
           return zoomEnabled;
-        });
+        }),
+      dispatch = d3Dispatch
+        .dispatch('zoom');
 
     function svgZoomer(_target) {
       target = _target;
@@ -70,7 +78,7 @@
       target.call(zoom
         .on('zoom', function () {
           target.select('g').attr('transform', d3Selection.event.transform);
-          onZoom(svgZoomer.scale());
+          dispatch.call('zoom', null, svgZoomer.scale(), svgZoomer.transform());
         }));
     }
 
@@ -104,8 +112,8 @@
       }
     };
 
-    svgZoomer.onZoom = function (_onZoom) {
-      onZoom = _onZoom;
+    svgZoomer.on = function (event, callback) {
+      dispatch.on(event, callback);
       return svgZoomer;
     };
 
