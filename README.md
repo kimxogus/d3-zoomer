@@ -1,4 +1,8 @@
 # d3-zoomer
+
+[![npm version][npm-image]][npm-url]
+[![npm downloads][downloads-image]][downloads-url]
+
 A library to use d3-zoom easily.
 
 See how to use [d3-zoomer example](https://kimxogus.github.io/d3-zoomer).
@@ -102,3 +106,8 @@ If *transform* is not specified, current transform object([d3-zoom.zoomTransform
 
 Sets if zoom is enabled. If *enabled* is specified, zoom will be enabled(*true*) or disabled(*false*) as [d3-zoom.filter](https://github.com/d3/d3-zoom#zoom_filter).
 If not, it will return current *enabled* status of d3-zoom.
+
+[npm-image]: https://img.shields.io/npm/v/d3-zoomer.svg
+[npm-url]: https://npmjs.org/package/d3-zoomer
+[downloads-image]: https://img.shields.io/npm/dm/d3-zoomer.svg
+[downloads-url]: https://npmjs.org/package/d3-zoomer
