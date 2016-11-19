@@ -1,7 +1,7 @@
 /**
  * d3-zoomer
  *
- * A wrapper for d3-zoom.
+ * A library to use d3-zoom easily.
  *
  * @author Taehyun Kim
  * @licence MIT
