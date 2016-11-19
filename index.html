@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>d3-zoomer</title>
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    <script src="build/d3-svg-zoomer.min.js"></script>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #container {
+            width: 100%;
+            height: 100%;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<script>
+    var data = [{"label":"A","value": 5},{"label":"B","value": 10},{"label":"C","value": 15},{"label":"D","value": 3},{"label":"E","value": 6},{"label":"F","value": 12}];
+
+    var svg = d3.select("#container").append("svg")
+      .attr("width", 500)
+      .attr("height", 500);
+
+    var zoomer = d3.svgZoomer()
+      .scaleRange([0.01, 1])
+      .scaleDomain([1, 100])
+      .onZoom(function(newScale) {
+        console.log(newScale);
+      });
+
+    svg.call(zoomer);
+</script>
+</body>
+</html>
