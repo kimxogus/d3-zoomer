@@ -10,32 +10,79 @@
             width: 100%;
             height: 100%;
             margin: 0;
-            padding: 0;
+            padding: 20px;
         }
         #container {
             width: 100%;
             height: 100%;
-            margin: 20px;
+            margin-top: 20px;
+        }
+        #container svg {
+            border: 1px solid black;
         }
     </style>
 </head>
 <body>
+<div id="header">
+    scale: <span id="scale"></span><br>
+    x: <span id="transform-x"></span><br>
+    y: <span id="transform-y"></span><br>
+    k: <span id="transform-k"></span><br>
+</div>
 <div id="container"></div>
 <script>
-    var data = [{"label":"A","value": 5},{"label":"B","value": 10},{"label":"C","value": 15},{"label":"D","value": 3},{"label":"E","value": 6},{"label":"F","value": 12}];
+    var data = "ABCDEFGHIJ".split("");
 
-    var svg = d3.select("#container").append("svg")
-      .attr("width", 500)
-      .attr("height", 500);
+    var width = 1200, height = 200;
 
-    var zoomer = d3.svgZoomer()
-      .scaleRange([0.01, 1])
-      .scaleDomain([1, 100])
-      .on('zoom', function(newScale, newTransform) {
-        console.log(newScale, newTransform);
+    var svgZoomer = d3.svgZoomer()
+      .scaleRange([0.01, 2])
+      .scaleDomain([1, 200])
+      .on('zoom', function() {
+        update();
       });
 
-    svg.call(zoomer);
+    var container = d3.select("#container").append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .append("g")
+      .call(svgZoomer);
+
+    update();
+
+    function update() {
+      updateValue("scale", svgZoomer.scale());
+      updateValue("transform-x", svgZoomer.transform().x);
+      updateValue("transform-y", svgZoomer.transform().y);
+      updateValue("transform-k", svgZoomer.transform().k);
+
+      function updateValue(id, value) {
+        d3.select("#"+id)
+          .text(value);
+      }
+    }
+
+
+    var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+    var circle = container.append("g").attr("class", "circles")
+      .selectAll("circle")
+      .data(data).enter();
+
+    circle.append("circle")
+      .attr("r", "50")
+      .attr("transform", function(d, i) {
+        return "translate(" + (i * 150 + 50) + ",100)";
+      })
+      .attr("fill", function(d) {
+        return color(d);
+      })
+      .on("mouseover", function() {
+        svgZoomer.enabled(false);
+      })
+      .on("mouseout", function() {
+        svgZoomer.enabled(true);
+      });
 </script>
 </body>
 </html>
