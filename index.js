@@ -1,6 +1,8 @@
 /**
  * d3-svg-zoomer
  *
+ * A wrapper of d3-zoom for svg.
+ *
  * @author Taehyun Kim
  * @licence MIT
  */
@@ -51,7 +53,8 @@
 /* eslint-enable global-require no-param-reassign */
 })(this, function (d3Zoom, d3Selection, d3Scale, d3Dispatch) {
   return function () {
-    var target = null,
+    var svg = null,
+      className = 'pan-zoom',
       zoomEnabled = true,
       zoomScaleRange = [0.1, 2],
       zoomScaleDomain = [0.1, 2],
@@ -66,25 +69,44 @@
       dispatch = d3Dispatch
         .dispatch('zoom');
 
-    function svgZoomer(_target) {
-      target = _target;
-
-      target = target.node().tagName === 'svg' ? target : d3Selection.select(target.node().ownerSVGElement);
-
-      if (target.select('g').empty()) {
-        target.append('g');
+    function selectOrCreateContainer() {
+      if (svg.selectAll('g.' + className).empty()) {
+        svg.append('g').attr('class', className);
       }
 
-      target.call(zoom
+      return svg.selectAll('g.' + className);
+    }
+
+    function svgZoomer(_target) {
+      svg = _target;
+
+      svg = svg.node().tagName === 'svg' ? svg : d3Selection.select(svg.node().ownerSVGElement);
+
+      selectOrCreateContainer();
+
+      svg.call(zoom
         .on('zoom', function () {
-          target.select('g').attr('transform', d3Selection.event.transform);
-          dispatch.call('zoom', target.node());
+          selectOrCreateContainer().attr('transform', d3Selection.event.transform);
+          dispatch.call('zoom', svg.node());
         }));
     }
 
+    svgZoomer.class = function (_className) {
+      if (arguments.length === 0) {
+        return className;
+      } else {
+        className = _className;
+        return svgZoomer;
+      }
+    };
+
+    svgZoomer.container = function () {
+      return selectOrCreateContainer();
+    };
+
     svgZoomer.scale = function (scale) {
       if (arguments.length === 0) {
-        var transform = d3Zoom.zoomTransform(target.node());
+        var transform = d3Zoom.zoomTransform(svg.node());
         return zoomScale.invert(transform.k);
       } else {
         return svgZoomer.transform({ k: zoomScale(scale) });
@@ -119,9 +141,9 @@
 
     svgZoomer.transform = function (_transform) {
       if (arguments.length === 0) {
-        return d3Zoom.zoomTransform(target.node());
+        return d3Zoom.zoomTransform(svg.node());
       } else {
-        var zoomTransform = d3Zoom.zoomTransform(target.node());
+        var zoomTransform = d3Zoom.zoomTransform(svg.node());
 
         var x = _transform.x || _transform.x === 0 ? _transform.x : zoomTransform.x,
           y = _transform.y || _transform.y === 0 ? _transform.y : zoomTransform.y,
@@ -129,7 +151,7 @@
 
         var zoomIdentity = d3Zoom.zoomIdentity.translate(x, y).scale(scale);
 
-        target.call(zoom.transform, zoomIdentity);
+        svg.call(zoom.transform, zoomIdentity);
 
         return svgZoomer;
       }
