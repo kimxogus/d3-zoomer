@@ -39,7 +39,7 @@
     var svgZoomer = d3.svgZoomer()
       .scaleRange([0.01, 2])
       .scaleDomain([1, 200])
-      .class("container")
+      .targetClass("container")
       .on('zoom', function() {
         update();
       });
@@ -50,7 +50,7 @@
       .append("g")
       .call(svgZoomer);
 
-    var container = svgZoomer.container();
+    var container = svgZoomer.target();
 
     update();
 

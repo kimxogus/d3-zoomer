@@ -54,7 +54,7 @@
 })(this, function (d3Zoom, d3Selection, d3Scale, d3Dispatch) {
   return function () {
     var svg = null,
-      className = 'pan-zoom',
+      targetClass = 'pan-zoom',
       zoomEnabled = true,
       zoomScaleRange = [0.1, 2],
       zoomScaleDomain = [0.1, 2],
@@ -69,12 +69,12 @@
       dispatch = d3Dispatch
         .dispatch('zoom');
 
-    function selectOrCreateContainer() {
-      if (svg.selectAll('g.' + className).empty()) {
-        svg.append('g').attr('class', className);
+    function selectOrCreateTarget() {
+      if (svg.selectAll('g.' + targetClass).empty()) {
+        svg.append('g').attr('class', targetClass);
       }
 
-      return svg.selectAll('g.' + className);
+      return svg.selectAll('g.' + targetClass);
     }
 
     function svgZoomer(_target) {
@@ -82,26 +82,26 @@
 
       svg = svg.node().tagName === 'svg' ? svg : d3Selection.select(svg.node().ownerSVGElement);
 
-      selectOrCreateContainer();
+      selectOrCreateTarget();
 
       svg.call(zoom
         .on('zoom', function () {
-          selectOrCreateContainer().attr('transform', d3Selection.event.transform);
+          selectOrCreateTarget().attr('transform', d3Selection.event.transform);
           dispatch.call('zoom', svg.node());
         }));
     }
 
-    svgZoomer.class = function (_className) {
+    svgZoomer.targetClass = function (_className) {
       if (arguments.length === 0) {
-        return className;
+        return targetClass;
       } else {
-        className = _className;
+        targetClass = _className;
         return svgZoomer;
       }
     };
 
-    svgZoomer.container = function () {
-      return selectOrCreateContainer();
+    svgZoomer.target = function () {
+      return selectOrCreateTarget();
     };
 
     svgZoomer.scale = function (scale) {
