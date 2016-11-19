@@ -1,7 +1,7 @@
 /**
  * d3-zoomer
  *
- * A wrapper of d3-zoom.
+ * A wrapper for d3-zoom.
  *
  * @author Taehyun Kim
  * @licence MIT

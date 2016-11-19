@@ -1,7 +1,7 @@
 {
   "name": "d3-zoomer",
   "version": "0.0.1",
-  "description": "d3-zoom wrapper library.",
+  "description": "A d3-zoom wrapper library.",
   "private": false,
   "main": "index.js",
   "scripts": {
