@@ -18,10 +18,8 @@ npm install d3-zoomer
 var d3Zoomer = require('d3-zoomer');
 ```
 
-- Download
+- Vanilla: Download
 [latest release](https://github.com/kimxogus/d3-zoomer/releases/latest).
-AMD, CommonJS, and vanilla environments are supported. In vanilla, a `d3` global is exported:
-
 
 ```html
 <script src="path/to/d3.min.js"></script>
