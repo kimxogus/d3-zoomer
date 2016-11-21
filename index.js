@@ -74,7 +74,10 @@
         svg.append('g').attr('class', targetClass);
       }
 
-      return svg.selectAll('g.' + targetClass);
+      return svg.selectAll('g.' + targetClass)
+        .filter(function () {
+          return this.parentNode.tagName.toLowerCase() === 'svg';
+        });
     }
 
     function zoomer(_target) {
