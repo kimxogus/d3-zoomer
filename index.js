@@ -95,14 +95,14 @@
       selectOrCreateTarget();
 
       svg.call(zoom
-        .on('start', function () {
+        .on('start.zoomer', function () {
           dispatch.call('start', svg.node());
         })
-        .on('zoom', function () {
+        .on('zoom.zoomer', function () {
           selectOrCreateTarget().attr('transform', d3Selection.event.transform);
           dispatch.call('zoom', svg.node());
         }))
-        .on('end', function () {
+        .on('end.zoomer', function () {
           dispatch.call('end', svg.node());
         });
     }

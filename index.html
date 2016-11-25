@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>d3-zoomer</title>
-    <script src="//d3js.org/d3.v4.min.js"></script>
+    <script src="http://d3js.org/d3.v4.min.js"></script>
     <script src="build/d3-zoomer.min.js"></script>
     <style>
         html, body {
@@ -32,6 +32,7 @@
 </head>
 <body>
 <div id="header">
+    zoom status: <span id="zoom-status" class="value"></span><br>
     zoom enabled: <span id="zoom-enabled" class="value"></span><br>
     scale: <span id="scale" class="value"></span><br>
     x: <span id="transform-x" class="value"></span><br>
@@ -47,8 +48,14 @@
     var zoomer = d3.zoomer()
       .scaleRange([0.1, 2])
       .scaleDomain([10, 200])
+      .on('start', function() {
+        update("start");
+      })
       .on('zoom', function() {
-        update();
+        update("zoom");
+      })
+      .on('end', function() {
+        update("end");
       });
 
     var svg = d3.select("#container").append("svg")
@@ -62,11 +69,14 @@
 
     update();
 
-    function update() {
+    function update(status) {
       var enabled = zoomer.enabled(),
         scale = zoomer.scale(),
         transform = zoomer.transform();
 
+      if(status) {
+        updateValue("zoom-status", status);
+      }
       updateValue("zoom-enabled", enabled);
       updateValue("scale", scale);
       updateValue("transform-x", transform.x);
