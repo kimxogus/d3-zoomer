@@ -31,10 +31,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "d3-dispatch": "^1.0.1",
-    "d3-scale": "^1.0.3",
-    "d3-selection": "^1.0.2",
-    "d3-zoom": "^1.0.3"
+    "d3-dispatch": "^1.0.2",
+    "d3-scale": "^1.0.4",
+    "d3-selection": "^1.0.3",
+    "d3-zoom": "^1.1.0"
   },
   "devDependencies": {
     "eslint": "^3.10.2",
