@@ -87,24 +87,26 @@
           : this.ownerSVGElement;
       });
 
-      _target.filter(function () {
-        return this.parentNode.tagName.toLowerCase() === 'svg' && this.tagName.toLowerCase() === 'g';
-      })
+      _target
+        .filter(function () {
+          return this.parentNode.tagName.toLowerCase() === 'svg' && this.tagName.toLowerCase() === 'g';
+        })
         .classed(targetClass, true);
 
       selectOrCreateTarget();
 
-      svg.call(zoom
-        .on('start.zoomer', function () {
-          dispatch.call('start', svg.node());
-        })
-        .on('zoom.zoomer', function () {
-          selectOrCreateTarget().attr('transform', d3Selection.event.transform);
-          dispatch.call('zoom', svg.node());
-        }))
-        .on('end.zoomer', function () {
-          dispatch.call('end', svg.node());
-        });
+      svg
+        .call(zoom
+          .on('start.zoomer', function () {
+            dispatch.call('start', svg.node());
+          })
+          .on('zoom.zoomer', function () {
+            selectOrCreateTarget().attr('transform', d3Selection.event.transform);
+            dispatch.call('zoom', svg.node());
+          }))
+          .on('end.zoomer', function () {
+            dispatch.call('end', svg.node());
+          });
     }
 
     zoomer.targetClass = function (_className) {
