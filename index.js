@@ -50,7 +50,7 @@
     root.d3.zoomer = factory(d3, d3, d3, d3);
   }
 /* eslint-enable no-param-reassign */
-/* eslint-enable global-require no-param-reassign */
+/* eslint-enable global-require */
 })(this, function (d3Zoom, d3Selection, d3Scale, d3Dispatch) {
   return function () {
     var svg = null,
