@@ -110,12 +110,12 @@
     }
 
     zoomer.targetClass = function (_className) {
-      if (arguments.length === 0) {
-        return targetClass;
-      } else {
+      if (arguments.length) {
         targetClass = _className;
         return zoomer;
       }
+
+      return targetClass;
     };
 
     zoomer.target = function () {
@@ -123,47 +123,45 @@
     };
 
     zoomer.scale = function (scale) {
-      if (arguments.length === 0) {
-        return zoomScale.invert(zoomer.transform().k);
-      } else {
+      if (arguments.length) {
         return zoomer.transform({ k: zoomScale(scale) });
       }
+
+      return zoomScale.invert(zoomer.transform().k);
     };
 
     zoomer.scaleRange = function (_scaleRange) {
-      if (arguments.length === 0) {
-        return zoomScaleRange;
-      } else {
+      if (arguments.length) {
         zoomScaleRange = Array.prototype.slice.call(_scaleRange);
         zoomScale.range(zoomScaleRange);
         zoom.scaleExtent(zoomScaleRange);
         return zoomer;
       }
+
+      return zoomScaleRange;
     };
 
     zoomer.scaleDomain = function (_scaleDomain) {
-      if (arguments.length === 0) {
-        return zoomScaleDomain;
-      } else {
+      if (arguments.length) {
         zoomScaleDomain = Array.prototype.slice.call(_scaleDomain);
         zoomScale.domain(zoomScaleDomain);
         return zoomer;
       }
+
+      return zoomScaleDomain;
     };
 
     zoomer.on = function (typename, callback) {
       if (arguments.length === 1) {
         return dispatch.on(typename);
-      } else {
-        dispatch.on(typename, callback);
-        return zoomer;
       }
+
+      dispatch.on(typename, callback);
+      return zoomer;
     };
 
     zoomer.transform = function (_transform) {
-      if (arguments.length === 0) {
-        return d3Zoom.zoomTransform(svg.node());
-      } else {
+      if (arguments.length) {
         var zoomTransform = d3Zoom.zoomTransform(svg.node());
 
         var x = (_transform.x || _transform.x === 0) ? _transform.x : zoomTransform.x,
@@ -176,15 +174,17 @@
 
         return zoomer;
       }
+
+      return d3Zoom.zoomTransform(svg.node());
     };
 
     zoomer.enabled = function (_zoomEnabled) {
-      if (arguments.length === 0) {
-        return zoomEnabled;
-      } else {
+      if (arguments.length) {
         zoomEnabled = _zoomEnabled;
         return zoomer;
       }
+
+      return zoomEnabled;
     };
 
     return zoomer;
