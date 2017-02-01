@@ -2,6 +2,7 @@
 
 [![npm version][npm-image]][npm-url]
 [![npm downloads][downloads-image]][downloads-url]
+[![Build Status][travis-image]][travis-url]
 
 A library to use d3-zoom easily.
 
@@ -109,3 +110,5 @@ If not, it will return current *enabled* status of d3-zoom.
 [npm-url]: https://npmjs.org/package/d3-zoomer
 [downloads-image]: https://img.shields.io/npm/dm/d3-zoomer.svg
 [downloads-url]: https://npmjs.org/package/d3-zoomer
+[travis-image]: https://travis-ci.org/kimxogus/d3-zoomer.svg
+[travis-url]: https://travis-ci.org/kimxogus/d3-zoomer
