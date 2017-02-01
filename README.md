@@ -123,3 +123,4 @@ If not, it will return current *enabled* status of d3-zoom.
 [dev-dependencies-url]: https://david-dm.org/kimxogus/d3-zoomer?type=dev
 [vulnerabilities-image]: https://snyk.io/test/github/kimxogus/d3-zoomer/badge.svg
 [vulnerabilities-url]: https://snyk.io/test/github/kimxogus/d3-zoomer
+
