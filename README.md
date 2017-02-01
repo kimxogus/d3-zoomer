@@ -3,6 +3,9 @@
 [![npm version][npm-image]][npm-url]
 [![npm downloads][downloads-image]][downloads-url]
 [![Build Status][travis-image]][travis-url]
+[![Dependencies Status][dependencies-image]][dependencies-url]
+[![DevDependencies Status][dev-dependencies-image]][dev-dependencies-url]
+[![Known Vulnerabilities][vulnerabilities-image]][vulnerabilities-url]
 
 A library to use d3-zoom easily.
 
@@ -112,3 +115,11 @@ If not, it will return current *enabled* status of d3-zoom.
 [downloads-url]: https://npmjs.org/package/d3-zoomer
 [travis-image]: https://travis-ci.org/kimxogus/d3-zoomer.svg
 [travis-url]: https://travis-ci.org/kimxogus/d3-zoomer
+[dependencies-image]: https://david-dm.org/kimxogus/d3-zoomer.svg
+[dependencies-url]: https://david-dm.org/kimxogus/d3-zoomer
+[dependencies-image]: https://david-dm.org/kimxogus/d3-zoomer/status.svg
+[dependencies-url]: https://david-dm.org/kimxogus/d3-zoomer
+[dev-dependencies-image]: https://david-dm.org/kimxogus/d3-zoomer/dev-status.svg
+[dev-dependencies-url]: https://david-dm.org/kimxogus/d3-zoomer?type=dev
+[vulnerabilities-image]: https://snyk.io/test/github/kimxogus/d3-zoomer/badge.svg
+[vulnerabilities-url]: https://snyk.io/test/github/kimxogus/d3-zoomer
