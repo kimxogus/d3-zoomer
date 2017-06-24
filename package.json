@@ -12,7 +12,7 @@
   "scripts": {
     "test": "npm run lint",
     "prebuild": "npm run test",
-    "build": "uglifyjs index.js -c -m -o build/d3-zoomer.min.js",
+    "build": "node scripts/build",
     "lint": "eslint .",
     "prepublish": "npm run build"
   },
