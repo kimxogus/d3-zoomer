@@ -1,4 +1,6 @@
-index.html
+node_modules
+.editorconfig
+.eslint*
 .travis.yml
 yarn.lock
 .yarnclean
