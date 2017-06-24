@@ -3,7 +3,7 @@
   "version": "1.0.3",
   "description": "A library to use d3-zoom easily.",
   "private": false,
-  "main": "index.js",
+  "main": "build/d3-zoomer.js",
   "homepage": "https://github.com/kimxogus/d3-zoomer",
   "repository": {
     "url": "https://github.com/kimxogus/d3-zoomer.git",

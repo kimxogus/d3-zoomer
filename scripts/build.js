@@ -3,15 +3,13 @@ var path = require('path');
 var fs = require('fs');
 var uglifyJs = require('uglify-js');
 
-console.log(uglifyJs.default_options())
-
 var BUILD_PATH = 'build';
 
 if(!fs.existsSync(BUILD_PATH)) {
   fs.mkdirSync(BUILD_PATH);
 }
 
-var d3Zoomer = fs.readFileSync('index.js', 'utf8');
+var d3Zoomer = fs.readFileSync(path.join('src', 'index.js'), 'utf8');
 
 fs.writeFileSync(path.join(BUILD_PATH, 'd3-zoomer.js'), d3Zoomer);
 
