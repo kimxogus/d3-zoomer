@@ -10,9 +10,11 @@
     "type": "git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run lint && node node_modules/uglify-js/bin/uglifyjs index.js -c -m -o build/d3-zoomer.min.js",
-    "lint": "node node_modules/eslint/bin/eslint index.js"
+    "test": "npm run lint",
+    "prebuild": "npm run test",
+    "build": "node node_modules/uglify-js/bin/uglifyjs index.js -c -m -o build/d3-zoomer.min.js",
+    "lint": "node node_modules/eslint/bin/eslint index.js",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "d3",
@@ -39,7 +41,6 @@
   "devDependencies": {
     "eslint": "^4.1.0",
     "eslint-config-airbnb-base": "^11.2.0",
-    "eslint-plugin-import": "^2.6.0",
     "uglify-js": "^3.0.19"
   }
 }

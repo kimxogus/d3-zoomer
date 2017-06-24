@@ -5,9 +5,6 @@
     "browser": true,
     "node": true
   },
-  "plugins": [
-    "import"
-  ],
   "rules": {
     "vars-on-top": 0,
     "func-names": 0,
