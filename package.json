@@ -1,7 +1,7 @@
 {
   "name": "d3-zoomer",
   "version": "1.0.3",
-  "description": "A library to use d3-zoom easily.",
+  "description": "A library for easy pan-zoom behavior of d3",
   "private": false,
   "main": "build/d3-zoomer.js",
   "homepage": "https://github.com/kimxogus/d3-zoomer",
@@ -20,11 +20,10 @@
     "d3",
     "zoom",
     "d3-zoom",
-    "d3-zoomer"
+    "pan-zoom behavior"
   ],
   "bugs": {
-    "url": "https://github.com/kimxogus/d3-zoomer/issues",
-    "email": "kgyoo8232@gmail.com"
+    "url": "https://github.com/kimxogus/d3-zoomer/issues"
   },
   "author": {
     "name": "Taehyun Kim",
