@@ -1,2 +1,4 @@
 index.html
 .travis.yml
+yarn.lock
+.yarnclean
