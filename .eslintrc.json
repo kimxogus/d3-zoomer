@@ -1,5 +1,4 @@
 {
-  "extends": "airbnb-base/legacy",
   "env": {
     "amd": true,
     "browser": true,

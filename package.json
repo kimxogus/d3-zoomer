@@ -12,8 +12,8 @@
   "scripts": {
     "test": "npm run lint",
     "prebuild": "npm run test",
-    "build": "node node_modules/uglify-js/bin/uglifyjs index.js -c -m -o build/d3-zoomer.min.js",
-    "lint": "node node_modules/eslint/bin/eslint index.js",
+    "build": "uglifyjs index.js -c -m -o build/d3-zoomer.min.js",
+    "lint": "eslint .",
     "prepublish": "npm run build"
   },
   "keywords": [
@@ -40,7 +40,6 @@
   },
   "devDependencies": {
     "eslint": "^4.1.0",
-    "eslint-config-airbnb-base": "^11.2.0",
     "uglify-js": "^3.0.19"
   }
 }
